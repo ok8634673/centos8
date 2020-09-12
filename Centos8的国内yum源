@@ -1,0 +1,11 @@
+Centos8的国内yum源
+
+cd /etc/yum.repos.d/
+rm -f CentOS-Base.repo CentOS-AppStream.repo CentOS-PowerTools.repo CentOS-centosplus.repo CentOS-Extras.repo
+curl -o CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-8.repo
+
+yum makecache
+
+
+https://www.cnblogs.com/hackyo/p/11650188.html
+
