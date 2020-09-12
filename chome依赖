@@ -1,0 +1,11 @@
+chome依赖 
+
+sudo yum install liberation-fonts
+
+sudo yum -y install libXss*
+
+sudo yum install libappindicator*
+
+yum install libappindicator-gtk3
+
+yum install vulkan-loader-1.2.135.0-1.el8.x86_64
