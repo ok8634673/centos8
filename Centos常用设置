@@ -7,7 +7,9 @@
 
 2.添加epel源  
 
-yum -y --nogpgcheck install http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-2.noarch.rpm
+centos8 yum -y --nogpgcheck install https://mirrors.tuna.tsinghua.edu.cn/epel/8/Everything/x86_64/Packages/e/epel-release-8-8.el8.noarch.rpm
+centos7 yum -y --nogpgcheck install http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-2.noarch.rpm
+
 
  
 
