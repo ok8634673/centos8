@@ -1,0 +1,2 @@
+添加mockbuild 用户
+sudo useradd -s /sbin/nologin mockbuild
