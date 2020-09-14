@@ -1,12 +1,55 @@
-centos7 安装搜狗拼音输入法
+https://www.codenong.com/jsd36ec6bd99bc/
 
-1.安装 fcitx和必要的软件包
+适合Centos 7 所有版本
+不用卸载ibus ，别信那些坑比
 
-yum -y  install fcitx*
-yum -y install libQtWebKit*
-2.下载搜狗输入法
-到搜狗官网下载最新deb版本软件包：
+下载sogou 2.2.0（注意！不要下官网最新版2.3 会失败)
 
-https://pinyin.sogou.com/linux/?r=pinyin
+wget cdn2.ime.sogou.com/dl/index/1524572264/sogoupinyin_2.2.0.0108_amd64.deb
+配置Centos7的epel源
 
-3.安装dpkg包：
+1
+wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
+安装fcitx和必要软件
+
+1
+yum -y install fcitx-configtool libQtWebKit* fcitx
+
+ 
+设置环境变量
+
+
+cat >> /etc/profile << EOF
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XIM=fcitx
+EOF
+安装dpkg(用来解压deb包)
+
+yum -y install dpkg
+ar -x sogoupinyin_2.2.0.0108_amd64.deb #解压,会有三个文件，只要data.tar.xz 就行
+tar -xvf data.tar.xz -C /
+cp /usr/lib/x86_64-linux-gnu/fcitx/fcitx-sogoupinyin.so /usr/lib64/fcitx/
+yum install -y im-chooser #切换输入法工具
+sudo imsettings-switch fcitx  #这步需要切换到普通用户桌面环境用sudo 执行
+配置待启动的输入法
+执行以下命令，并按照提示选择fcitx.conf所在的序号后回车：
+(切回root桌面环境)
+alternatives --config xinputrc --> 5(对应 /etc/X11/xinit/xinput.d/fcitx.conf)
+
+1
+echo '/usr/bin/fcitx &> /dev/null'  >> /etc/bashrc
+
+ 
+注销或重启
+按ctrl + space 切换到搜狗输入法，之后按shift切换就可以了
+有图有真相
+
+
+image.png
+
+有什么问题可以留言
+第一次写文章，有什么建议可以提出来
+---------------------------------更新------------------------------------------------------
+2.3安装要麻烦点，版本界面还没2.2好看，需要安装gcc 5.4才支持2.3
