@@ -1,0 +1,12 @@
+centos7 安装搜狗拼音输入法
+
+1.安装 fcitx和必要的软件包
+
+yum -y  install fcitx*
+yum -y install libQtWebKit*
+2.下载搜狗输入法
+到搜狗官网下载最新deb版本软件包：
+
+https://pinyin.sogou.com/linux/?r=pinyin
+
+3.安装dpkg包：
