@@ -1,0 +1,22 @@
+1、加源
+
+wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
+
+2、安装
+
+yum update;yum install ntfs-3g
+
+yum install ntfs-3g
+
+
+
+
+在window10下安装完centOS7，本来想利用linux系统吃内存少的特点，建立虚拟机集群，但是当初没有考虑好，就给centOS7分配了50G内存，所以就想把虚拟机系统放到window10的其他分区，但是centOS7怎么都挂不上，装了fuse，装了ntfs-3g都没有办法，后来无意看到另一篇文章是federa系统上出现的同样问题，拿过来借鉴下，竟然可以，他山之石可以攻玉啊。
+
+转载自：http://blog.sina.com.cn/zinkie
+解决方案
+mv /lib/libntfs-3g.so.88 /lib/libntfs-3g.so.88.unwanted
+mount -t ntfs-3g /dev/sda6 /mnt/Wind
+
+原理
+链接库应该是 /lib64/libntfs-3g.so.87, 而不是 /lib/libntfs-3g.so.87 ，系统很有可能安装了两个库，引起冲突。对原油的苦重命名即可
